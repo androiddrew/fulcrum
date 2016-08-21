@@ -17,14 +17,12 @@ class DevelopmentConfig(Config):
 
 class TestingConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = os.environ['POSTGRES_TEST_CONFIG_STRING']
     DEBUG_TB_INTERCEPT_REDIRECTS = False #Remove Debug tool bar intercept redirects or you won't be able to test them
     TESTING = True
 
 
 class ProductionConfig(Config):
-    SQLALCHEMY_DATABASE_URI = os.environ['POSTGRES_PROD_CONFIG_STRING']
-
+    pass
 
 config_by_name = dict(dev=DevelopmentConfig,
                       test=TestingConfig,

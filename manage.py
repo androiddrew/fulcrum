@@ -3,10 +3,8 @@ from sqlalchemy.exc import IntegrityError
 from fulcrum import create_app, db
 from fulcrum.models import Role, ToDo, User, Address, Email
 
-
 app = create_app('dev')
 manager = Manager(app)
-
 
 
 @manager.command
@@ -18,8 +16,11 @@ def initdb():
 @manager.command
 def dropdb():
     if prompt_bool('Are you sure you want to drop the database?'):
-        db.drop_all()
-        print('Database tables dropped')
+        if prompt_bool('You could really mess things up, are you sure you want to drop the db?'):
+            db.drop_all()
+            print('Database tables dropped')
+        else:
+            print('Ok we are not going to drop the db today')
 
 
 @manager.command
@@ -31,7 +32,7 @@ def test_data():
         address = Address(address_line1='1234 Fake St.', city='Sin City', state='MI', zip='12345', country='US')
         email = Email(email='fake@gmail.com')
         user.roles.append(admin)
-        user.mail_addressess.append(address)
+        user.mail_addresses.append(address)
         user.email_addresses.append(email)
         new_todo = ToDo(title='MILK', task="don't forget the milk")
         user.to_dos.append(new_todo)
@@ -41,7 +42,8 @@ def test_data():
     except IntegrityError as e:
         db.session.rollback()
         print("Transaction rolledback due to Integrity Error\n",
-            str(e))
+              str(e))
+
 
 if __name__ == "__main__":
     manager.run()

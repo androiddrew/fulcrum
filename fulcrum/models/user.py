@@ -18,7 +18,7 @@ class User(db.Model):
     roles = db.relationship('Role', secondary='user_role',
         backref=db.backref('users', lazy='dynamic'))
     email_addresses = db.relationship('Email', backref='user', lazy='dynamic')
-    mail_addressess = db.relationship('Address', backref='user', lazy='dynamic')
+    mail_addresses = db.relationship('Address', backref='user', lazy='dynamic')
     to_dos = db.relationship('ToDo', backref='user', lazy='dynamic')
     is_confirmed = db.Column(db.Boolean, nullable=False, default=False)
     is_active = db.Column(db.Boolean, nullable=False, default=True)
