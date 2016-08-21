@@ -13,6 +13,7 @@ flask-marshmallow==0.7.0
 itsdangerous==0.24
 marshmallow==2.9.1
 marshmallow-sqlalchemy==0.10.0
+psycopg2==2.6.2
 python-dateutil==2.5.3
 pytz==2016.6.1
 six==1.10.0

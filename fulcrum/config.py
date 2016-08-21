@@ -12,22 +12,21 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'devApi.db')
+    SQLALCHEMY_DATABASE_URI = os.environ['POSTGRES_DEV_CONFIG_STRING']
 
 
 class TestingConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'testApi.db')
+    SQLALCHEMY_DATABASE_URI = os.environ['POSTGRES_TEST_CONFIG_STRING']
     DEBUG_TB_INTERCEPT_REDIRECTS = False #Remove Debug tool bar intercept redirects or you won't be able to test them
-    TESTING = True #Bubble Execptions to test framework
+    TESTING = True
 
 
 class ProductionConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'Api.db')
+    SQLALCHEMY_DATABASE_URI = os.environ['POSTGRES_PROD_CONFIG_STRING']
 
 
 config_by_name = dict(dev=DevelopmentConfig,
                       test=TestingConfig,
                       prod=ProductionConfig)
 
-#app.config['SERVER_NAME'] = '127.0.0.1:8080'
