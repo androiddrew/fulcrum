@@ -5,7 +5,7 @@ from flask_restful import Api
 from .config import config_by_name
 
 db = SQLAlchemy()
-api = Api()
+# api = Api() # Relocating to app factory for testing purposes
 ma = Marshmallow()
 
 def create_app(config_name):
@@ -14,6 +14,9 @@ def create_app(config_name):
     app.config.from_object(config_by_name[config_name])
     db.init_app(app)
     ma.init_app(app)
+    # Relocating api to app factory for testing purposes. Leaving this in global scope causes issues with
+    # the test runner trying to overwrite an existing endpoint function
+    api = Api()
 
     # Import placed here to avoid circular import
     from .resources import ToDoCollection, ToDoDocument, UserCollection, UserDocument, UserToDoCollection

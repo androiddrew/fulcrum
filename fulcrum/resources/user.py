@@ -57,7 +57,7 @@ class UserToDoCollection(Resource):
     def post(self, user_id):
         json_data = request.get_json()
         if not json_data:
-            return {'message': 'No input data provided'}, 400
+            return {'message': 'No input data provided', 'status': 400}, 400
         data, errors = todo_schema.load(json_data)
         if errors:
             return errors, 422
