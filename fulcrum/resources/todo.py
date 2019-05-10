@@ -7,16 +7,17 @@ from fulcrum.models import ToDo
 
 class ToDoSchema(ma.Schema):
     class Meta:
-        fields = ('id', 'date_created', 'date_modified', 'title', 'task', 'completed')
+        fields = ("id", "date_created", "date_modified", "title", "task", "completed")
+
 
 todo_schema = ToDoSchema()
 todos_schema = ToDoSchema(many=True)
 
 
-
 class ToDoCollection(Resource):
     def get(self):
         return todos_schema.dump(ToDo.query.all()).data
+
 
 """
     def post(self):
@@ -26,6 +27,7 @@ class ToDoCollection(Resource):
         db.session.commit()
         return todo, 201
 """
+
 
 class ToDoDocument(Resource):
     def get(self, todo_id=None):

@@ -1,0 +1,8 @@
+Flask
+Flask-Cache
+flask-marshmallow
+Flask-RESTful
+Flask-Script
+Flask-SQLAlchemy
+marshmallow-sqlalchemy
+psycopg2-binary

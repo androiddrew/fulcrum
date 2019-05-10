@@ -4,9 +4,10 @@ from fulcrum import db
 
 _punct_re = re.compile(r'[\t !"#$%&\'()*\-/<=>?@\[\\\]^_`{|},.]+')
 
+
 class ToDo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     date_modified = db.Column(db.DateTime, default=dt.utcnow, onupdate=dt.utcnow)
     date_created = db.Column(db.DateTime, default=dt.utcnow)
     title = db.Column(db.String(80), nullable=False)

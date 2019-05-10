@@ -1,6 +1,7 @@
 from datetime import datetime as dt
 from fulcrum import db
 
+
 class Role(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date_modified = db.Column(db.DateTime, default=dt.utcnow, onupdate=dt.utcnow)

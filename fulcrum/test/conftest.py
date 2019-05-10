@@ -3,13 +3,13 @@ import pytest
 
 from fulcrum import create_app, db as _db
 
-TESTDB_PATH = ''
+TESTDB_PATH = ""
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture(scope="session")
 def app(request):
     """Session-wide test 'Flask' application"""
-    app = create_app('test')
+    app = create_app("test")
 
     # Establish an application context before running the tests
     ctx = app.app_context()
@@ -22,7 +22,8 @@ def app(request):
     request.addfinalizer(teardown)
     return app
 
-@pytest.fixture(scope='session')
+
+@pytest.fixture(scope="session")
 def db(app, request):
     """Session-wide test database"""
 
@@ -40,7 +41,8 @@ def db(app, request):
     request.addfinalizer(teardown)
     return _db
 
-@pytest.fixture(scope='function')
+
+@pytest.fixture(scope="function")
 def session(db, request):
     """Creates a new database sessoin for a test"""
     connection = db.engine.connect()

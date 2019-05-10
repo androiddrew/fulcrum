@@ -24,6 +24,7 @@ class UserSchema(ma.ModelSchema):
     mail_addresses = fields.Nested(AddressSchema, many=True)
     email_addresses = fields.Nested(EmailSchema, many=True)
 
+
 user_schema = UserSchema()
 users_schema = UserSchema(many=True)
 
@@ -31,12 +32,12 @@ users_schema = UserSchema(many=True)
 class UserCollection(Resource):
     def get(self):
         result = users_schema.dump(User.query.all())
-        return result.data, 200, {'Cache-Control': 'max-age=30, must-revalidate'}
+        return result.data, 200, {"Cache-Control": "max-age=30, must-revalidate"}
 
     def post(self):
         json_data = request.get_json()
         if not json_data:
-            return {'message': 'No input data provided'}, 400
+            return {"message": "No input data provided"}, 400
         new_user, errors = user_schema.load(json_data)
         db.session.add(new_user)
         db.session.commit()
@@ -57,12 +58,12 @@ class UserToDoCollection(Resource):
     def post(self, user_id):
         json_data = request.get_json()
         if not json_data:
-            return {'message': 'No input data provided', 'status': 400}, 400
+            return {"message": "No input data provided", "status": 400}, 400
         data, errors = todo_schema.load(json_data)
         if errors:
             return errors, 422
         user = User.query.filter_by(id=user_id).first_or_404()
-        title, task = data['title'], data['task']
+        title, task = data["title"], data["task"]
         new_todo = ToDo(title=title, task=task)
         user.to_dos.append(new_todo)
         db.session.add(new_todo)

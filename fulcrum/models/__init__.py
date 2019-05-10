@@ -4,10 +4,4 @@ from .role import Role
 from .user import User
 from .todo import ToDo
 
-__all__ = [
-    'Address',
-    'Email',
-    'Role',
-    'User',
-    'ToDo'
-]
+__all__ = ["Address", "Email", "Role", "User", "ToDo"]

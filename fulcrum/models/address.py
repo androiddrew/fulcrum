@@ -1,9 +1,10 @@
 from datetime import datetime as dt
 from fulcrum import db
 
+
 class Address(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     date_modified = db.Column(db.DateTime, default=dt.utcnow, onupdate=dt.utcnow)
     date_created = db.Column(db.DateTime, default=dt.utcnow)
     address_line1 = db.Column(db.String, nullable=False)
