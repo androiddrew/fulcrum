@@ -5,7 +5,7 @@ A playground application to practice building a ReSTful api with Flask.
 
 ## Todos
 
-Flask. python application development, and my own skills have grown by leaps and bounds since the original authoring of this application. Below is a list of features to be implemented to modernize this application.  
+Flask, python application development, and my own skills have grown by leaps and bounds since the original authoring of this application. Below is a list of features to be implemented to reflect these developments.  
 
 - [x] Implement pip-tools for environment and dependency management
 - [ ] Refactor flask-script out of application and implement a Click manager
